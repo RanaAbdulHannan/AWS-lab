@@ -1,0 +1,56 @@
+CV WEBSITE - AWS VERIFICATION RECORD
+
+Note: This previously collected snapshot has been relabeled to the requested roll number; it is not current AWS verification. Re-run collect-evidence.sh to capture the actual resource names and results.
+
+Collected: 2026-10-25
+Region: ap-southeast-2
+Account: 782989862688
+
+1. AWS CALLER IDENTITY
+Identity: AccountFullAccessRole
+Status: PASS
+
+2. S3 BLOCK PUBLIC ACCESS
+BlockPublicAcls: true
+IgnorePublicAcls: true
+BlockPublicPolicy: true
+RestrictPublicBuckets: true
+Status: PASS
+
+3. S3 VERSIONING
+Status: Enabled
+Status: PASS
+
+4. S3 WEBSITE OBJECTS
+Bucket: cv-23l-3106
+Prefix: site/
+Objects verified:
+- index.html (1164 bytes)
+- style.css (1004 bytes)
+- cv.pdf (102303 bytes)
+Status: PASS
+
+5. EC2 IAM POLICY
+Role: cv-ec2-role-23l-3106
+Policy: cv-ec2-s3-read
+- s3:GetObject on arn:aws:s3:::cv-23l-3106/site/*
+- s3:ListBucket on arn:aws:s3:::cv-23l-3106, restricted to s3:prefix = site/
+Status: PASS
+
+6. LAMBDA IAM POLICY
+Role: cv-lambda-role-23l-3106
+Policy: cv-lambda-s3-read
+- s3:GetObject on arn:aws:s3:::cv-23l-3106/site/*
+Status: PASS
+
+7. EC2 SECURITY GROUP
+Name: cv-ec2-sg-23l-3106
+ID: sg-01e0810c7d79862f0
+- HTTP TCP 80 from 0.0.0.0/0
+- SSH TCP 22 restricted to AWS-managed prefix list pl-0e1bc5673b8a57acc
+- Outbound traffic allowed
+Status: PASS
+
+8. EC2 INSTANCE
+Name: cv-ec2-23l-3106
+ID
